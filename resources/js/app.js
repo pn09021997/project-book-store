@@ -1,6 +1,6 @@
 require('./bootstrap');
 import React from 'react';
 import { render } from 'react-dom';
-import Example from './components/Example';
+import App from './components/App';
 
-render(<Example />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
