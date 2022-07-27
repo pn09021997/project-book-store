@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('{any}', function () {
     return view('app'); // or wherever your React app is bootstrapped.
 })->where('any', '.*');
+
+//Route::get('/', function () {
+//    return view('app'); // or wherever your React app is bootstrapped.
+//});
+
+
+Route::get('/verify/verify',function (\Illuminate\Http\Request $request){
+    $code = $request->code;
+   $user = \App\Models\User::where('verify_code','=',$code)->first();
+    $user->is_verify = 1;
+    $user->email_verify_at = now();
+    $user->save();
+    echo "Your account is verify";
+});
+
